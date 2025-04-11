@@ -260,7 +260,7 @@ def create_force_diagram_plotly(H, n, m, xi):
 
     # W'2 - hình chữ nhật đối xứng quanh gốc
     fig.add_trace(go.Scatter(
-        x=[0, 0, -x1, -x1, 0],
+        x=[0, 0, x1, x1, 0],
         y=[H * (1 - xi), H, H, H * (1 - xi), H * (1 - xi)],
         fill='toself',
         mode='lines',
@@ -270,7 +270,7 @@ def create_force_diagram_plotly(H, n, m, xi):
 
     # W"2 - tam giác đối xứng quanh gốc
     fig.add_trace(go.Scatter(
-        x=[0, -x1, 0, 0],
+        x=[0, x1, 0, 0],
         y=[H * (1 - xi), H * (1 - xi), 0, H * (1 - xi)],
         fill='toself',
         mode='lines',
