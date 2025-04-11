@@ -248,19 +248,19 @@ def create_force_diagram_plotly(H, n, m, xi):
     water_color = 'rgba(223, 242, 255, 0.9)'
     water_line = dict(color='rgba(100, 180, 255, 0.6)', dash='solid')
 
-    # W1 - tam giác cạnh đáy nằm dưới, rộng theo H
+    # W1 - tam giác đáy dưới, lệch trái
     fig.add_trace(go.Scatter(
-        x=[-x1, 0, -x1],
-        y=[0, H, H],
+        x=[-2 * x1, -2 * x1, 0],
+        y=[0, H, 0],
         fill='toself',
         mode='lines',
         line=water_line,
         fillcolor=water_color,
         name='W1'))
 
-    # W'2 - hình chữ nhật đúng kích thước
+    # W'2 - hình chữ nhật, đối xứng về bên trái
     fig.add_trace(go.Scatter(
-        x=[x1, x1, x1 + x1, x1 + x1],
+        x=[-x1, -x1, 0, 0],
         y=[H * (1 - xi), H, H, H * (1 - xi)],
         fill='toself',
         mode='lines',
@@ -268,9 +268,9 @@ def create_force_diagram_plotly(H, n, m, xi):
         fillcolor=water_color,
         name="W'2"))
 
-    # W"2 - hình tam giác: đáy trên = x1, cạnh đứng = H*(1 - xi)
+    # W"2 - tam giác, đối xứng trái
     fig.add_trace(go.Scatter(
-        x=[x1, x1 - x1, x1],
+        x=[0, -x1, 0],
         y=[H * (1 - xi), H * (1 - xi), 0],
         fill='toself',
         mode='lines',
@@ -304,6 +304,7 @@ def create_force_diagram_plotly(H, n, m, xi):
         plot_bgcolor='white')
 
     return fig
+
 
 
 # Hàm tạo biểu đồ hàm mất mát
