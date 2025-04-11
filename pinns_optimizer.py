@@ -281,7 +281,7 @@ def create_force_diagram_plotly(H, n, m, xi):
     # Wt - tam giác thấm nằm dưới với góc alpha1 (đáy nghiêng)
     fig.add_trace(go.Scatter(
         x=[x0, x4, x0],
-        y=[0, 0, -alpha1 * H],
+        y=[0, 0, -a1 * H],
         fill='toself',
         mode='lines',
         line=water_line,
