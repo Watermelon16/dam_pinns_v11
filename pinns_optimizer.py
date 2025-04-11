@@ -244,21 +244,21 @@ def create_force_diagram_plotly(H, n, m, xi):
     add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, 2.8, 'W"2')
     add_arrow(x0 - 3, l1, -2.5, 0, 'W1')
     
-    # Màu đồng bộ áp lực nước (nhạt)
+ # Màu đồng bộ áp lực nước (nhạt)
     water_color = 'rgba(223, 242, 255, 0.9)'
-    water_line = dict(color='rgba(100, 180, 255, 0.8)', dash='solid')
+    water_line = dict(color='rgba(100, 180, 255, 0.6)', dash='solid')
 
-    # W1 - biểu đồ hình tam giác đáy nằm dưới
+    # W1 - tam giác cạnh đáy nằm dưới, rộng theo H
     fig.add_trace(go.Scatter(
-        x=[-3.5, -3.5, 0],
-        y=[0, H, 0],
+        x=[-x1, 0, -x1],
+        y=[0, H, H],
         fill='toself',
         mode='lines',
         line=water_line,
         fillcolor=water_color,
         name='W1'))
 
-    # W'2 - hình chữ nhật: chiều rộng = x1, chiều cao = xi*H
+    # W'2 - hình chữ nhật đúng kích thước
     fig.add_trace(go.Scatter(
         x=[x1, x1, x1 + x1, x1 + x1],
         y=[H * (1 - xi), H, H, H * (1 - xi)],
@@ -268,7 +268,7 @@ def create_force_diagram_plotly(H, n, m, xi):
         fillcolor=water_color,
         name="W'2"))
 
-    # W"2 - hình tam giác nằm bên trái
+    # W"2 - hình tam giác: đáy trên = x1, cạnh đứng = H*(1 - xi)
     fig.add_trace(go.Scatter(
         x=[x1, x1 - x1, x1],
         y=[H * (1 - xi), H * (1 - xi), 0],
@@ -289,9 +289,9 @@ def create_force_diagram_plotly(H, n, m, xi):
         name='Wt'))
 
     # Ghi chú thông số động theo hình dạng đập
-    fig.add_annotation(x=x1 * 0.7, y=H * (1 - xi) * 0.9, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.97, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=x0 + 0.1, y=H * (1 - xi) + xi * H * 0.5, text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.8, y=H * (1 - xi) * 0.8, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.95, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x0 + 0.1, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
