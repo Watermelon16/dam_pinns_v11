@@ -244,61 +244,64 @@ def create_force_diagram_plotly(H, n, m, xi):
     add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, 2.8, 'W"2')
     add_arrow(x0 - 3, l1, -2.5, 0, 'W1')
     
-    # 1. Phân bố áp lực W1 (tam giác đứng ngoài tường đập)
+# Biểu đồ phân bố W1 (tam giác)
     fig.add_trace(go.Scatter(
-        x=[-0.2, -0.2, 0],
+        x=[-3, -3, 0],
         y=[0, H, H],
         fill='toself',
         mode='lines',
         line=dict(color='blue', dash='dot'),
         fillcolor='rgba(0, 0, 255, 0.3)',
-        name='W1'
-    ))
+        name='W1'))
 
-    # 2. Phân bố áp lực W'2 (hình thang nghiêng bên trái phần xiên)
+    # Biểu đồ phân bố W'2 (chữ nhật)
     fig.add_trace(go.Scatter(
-        x=[x1 - 0.05, x1, x1, x1 - 0.05],
+        x=[x1 + 0.1, x1 + 0.1, x1 + 0.3, x1 + 0.3],
         y=[H * (1 - xi), H, H, H * (1 - xi)],
         fill='toself',
         mode='lines',
         line=dict(color='orange', dash='dot'),
         fillcolor='rgba(255, 165, 0, 0.3)',
-        name="W'2"
-    ))
+        name="W'2"))
 
-    # 3. Phân bố áp lực W"2 (tam giác dưới phần thẳng)
+    # Biểu đồ phân bố W"2 (tam giác)
     fig.add_trace(go.Scatter(
-        x=[x1 - 0.05, x1, x1],
+        x=[x1 + 0.1, x1 + 0.3, x1 + 0.1],
         y=[0, 0, H * (1 - xi)],
         fill='toself',
         mode='lines',
         line=dict(color='darkorange', dash='dot'),
         fillcolor='rgba(255, 140, 0, 0.3)',
-        name='W"2'
-    ))
+        name='W"2'))
 
-    # 4. Phân bố áp lực thấm Wt (hình thang ngược từ đáy lên)
+    # Biểu đồ phân bố Wt (tam giác đáy)
     fig.add_trace(go.Scatter(
-        x=[x0, x4, x4, x0],
-        y=[-0.1, -0.1, 0, 0],
+        x=[x0, x4, x0],
+        y=[0, 0, -2],
         fill='toself',
         mode='lines',
         line=dict(color='green', dash='dot'),
         fillcolor='rgba(0, 255, 0, 0.3)',
-        name='Wt'
-    ))
+        name='Wt'))
+
+    # Ghi chú các thông số đặc trưng
+    fig.add_annotation(x=x1 / 2, y=H * 0.5, text="n", showarrow=False, font=dict(size=14))
+    fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.9, text="m", showarrow=False, font=dict(size=14))
+    fig.add_annotation(x=x1 + 5, y=H * (1 - xi) / 2, text="ξ", showarrow=False, font=dict(size=14))
 
     fig.update_layout(
-        title=f"Sơ đồ lực tác dụng lên đập H = {H} m",
+        title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
         xaxis_title="Chiều rộng (m)",
         yaxis_title="Chiều cao (m)",
-        width=700, height=600,
+        width=800,
+        height=600,
         showlegend=False,
         xaxis=dict(scaleanchor="y", scaleratio=1),
-        plot_bgcolor='white'
-    )
+        plot_bgcolor='white')
 
     return fig
+
+
 # Hàm tạo biểu đồ hàm mất mát
 def plot_loss_curve(loss_history):
     """
