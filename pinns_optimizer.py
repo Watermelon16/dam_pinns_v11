@@ -248,17 +248,17 @@ def create_force_diagram_plotly(H, n, m, xi):
     water_color = 'rgba(223, 242, 255, 0.9)'
     water_line = dict(color='rgba(100, 180, 255, 0.6)', dash='solid')
 
-    # W1 - tam giác đáy dưới, lệch trái
+# W1 - tam giác nằm ngang đúng như hình minh họa
     fig.add_trace(go.Scatter(
-        x=[-2 * x1, -2 * x1, 0],
-        y=[0, H, 0],
+        x=[-x1 * 2, 0, -x1 * 2],
+        y=[0, H / 2, H],
         fill='toself',
         mode='lines',
         line=water_line,
         fillcolor=water_color,
         name='W1'))
 
-    # W'2 - hình chữ nhật, đối xứng về bên trái
+    # W'2 - hình chữ nhật dịch trái, rộng x1, cao xi*H
     fig.add_trace(go.Scatter(
         x=[-x1, -x1, 0, 0],
         y=[H * (1 - xi), H, H, H * (1 - xi)],
@@ -268,7 +268,7 @@ def create_force_diagram_plotly(H, n, m, xi):
         fillcolor=water_color,
         name="W'2"))
 
-    # W"2 - tam giác, đối xứng trái
+    # W"2 - tam giác nằm trái với đáy trên và cạnh đứng
     fig.add_trace(go.Scatter(
         x=[0, -x1, 0],
         y=[H * (1 - xi), H * (1 - xi), 0],
@@ -291,7 +291,7 @@ def create_force_diagram_plotly(H, n, m, xi):
     # Ghi chú thông số động theo hình dạng đập
     fig.add_annotation(x=x1 * 0.8, y=H * (1 - xi) * 0.8, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
     fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.95, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=x0 + 0.1, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=-x1 * 0.6, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
