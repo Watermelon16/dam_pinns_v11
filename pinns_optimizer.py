@@ -244,44 +244,44 @@ def create_force_diagram_plotly(H, n, m, xi):
     add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, 2.8, 'W"2')
     add_arrow(x0 - 3, l1, -2.5, 0, 'W1')
     
- # Màu đồng bộ áp lực nước (nhạt)
+    # Màu đồng bộ áp lực nước (nhạt)
     water_color = 'rgba(223, 242, 255, 0.9)'
-    water_line = dict(color='rgba(100, 180, 255, 0.6)', dash='solid')
+    water_line = dict(color='rgba(0,0, 0, 0)', width=0)
 
-# W1 - tam giác nằm ngang đúng như hình minh họa
+    # W1 - tam giác: từ (0,0) lên (0,H) rồi xuống (-H,0)
     fig.add_trace(go.Scatter(
-        x=[-x1 * 2, 0, -x1 * 2],
-        y=[0, H / 2, H],
+        x=[0, 0, -H, 0],
+        y=[0, H, 0, 0],
         fill='toself',
         mode='lines',
         line=water_line,
         fillcolor=water_color,
         name='W1'))
 
-    # W'2 - hình chữ nhật dịch trái, rộng x1, cao xi*H
+    # W'2 - hình chữ nhật đối xứng quanh gốc
     fig.add_trace(go.Scatter(
-        x=[-x1, -x1, 0, 0],
-        y=[H * (1 - xi), H, H, H * (1 - xi)],
+        x=[0, 0, -x1, -x1, 0],
+        y=[H * (1 - xi), H, H, H * (1 - xi), H * (1 - xi)],
         fill='toself',
         mode='lines',
         line=water_line,
         fillcolor=water_color,
         name="W'2"))
 
-    # W"2 - tam giác nằm trái với đáy trên và cạnh đứng
+    # W"2 - tam giác đối xứng quanh gốc
     fig.add_trace(go.Scatter(
-        x=[0, -x1, 0],
-        y=[H * (1 - xi), H * (1 - xi), 0],
+        x=[0, -x1, 0, 0],
+        y=[H * (1 - xi), H * (1 - xi), 0, H * (1 - xi)],
         fill='toself',
         mode='lines',
         line=water_line,
         fillcolor=water_color,
         name='W"2'))
 
-    # Wt - tam giác ngược dưới đáy
+    # Wt - tam giác thấm nằm dưới với góc alpha1 (đáy nghiêng)
     fig.add_trace(go.Scatter(
         x=[x0, x4, x0],
-        y=[0, 0, -4],
+        y=[0, 0, -alpha1 * H],
         fill='toself',
         mode='lines',
         line=water_line,
@@ -289,9 +289,9 @@ def create_force_diagram_plotly(H, n, m, xi):
         name='Wt'))
 
     # Ghi chú thông số động theo hình dạng đập
-    fig.add_annotation(x=x1 * 0.8, y=H * (1 - xi) * 0.8, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.95, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=-x1 * 0.6, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.4, y=H * (1 - xi) * 0.4, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.7, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.6, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
@@ -304,8 +304,6 @@ def create_force_diagram_plotly(H, n, m, xi):
         plot_bgcolor='white')
 
     return fig
-
-
 
 # Hàm tạo biểu đồ hàm mất mát
 def plot_loss_curve(loss_history):
