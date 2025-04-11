@@ -243,10 +243,11 @@ def create_force_diagram_plotly(H, n, m, xi):
     add_arrow(mid - l2, H * (1 - xi) + xi * H / 2, 0, 2.8, "W'2")
     add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, 2.8, 'W"2')
     add_arrow(x0 - 3, l1, -2.5, 0, 'W1')
+
     
     # Màu đồng bộ áp lực nước (nhạt)
     water_color = 'rgba(223, 242, 255, 0.9)'
-    water_line = dict(color='rgba(0,0, 0, 0)', width=0)
+    water_line = dict(color='rgba(0,0, 255, 00.2)', dash='dot')
 
     # W1 - tam giác: từ (0,0) lên (0,H) rồi xuống (-H,0)
     fig.add_trace(go.Scatter(
