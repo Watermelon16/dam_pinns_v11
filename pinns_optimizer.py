@@ -237,12 +237,12 @@ def create_force_diagram_plotly(H, n, m, xi):
         fig.add_annotation(x=x + dx * 1.1, y=y + dy * 1.1,
                            text=label, showarrow=False, font=dict(size=14, color='black'))
 
-    add_arrow(mid - lG1, H / 3, 0, 4, 'G1')
-    add_arrow(mid - lG2, H * (1 - xi) / 3, 0, 3.5, 'G2')
-    add_arrow(mid - lt, 0, 0, -3.5, 'Wt')
-    add_arrow(mid - l2, H * (1 - xi) + xi * H / 2, 0, 2.8, "W'2")
-    add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, 2.8, 'W"2')
-    add_arrow(x0 - 3, l1, -2.5, 0, 'W1')
+    add_arrow(mid - lG1, H / 3, 0, 6, 'G1')
+    add_arrow(mid - lG2, H * (1 - xi) / 3, 0, 6, 'G2')
+    add_arrow(mid - lt, 0, 0, -6, 'Wt')
+    add_arrow(mid - l2, H * (1 - xi) + xi * H / 2, 0, 6, "W'2")
+    add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, 6, 'W"2')
+    add_arrow(x0 - 3, l1, -6, 0, 'W1')
 
     
     # Màu đồng bộ áp lực nước (nhạt)
@@ -290,9 +290,9 @@ def create_force_diagram_plotly(H, n, m, xi):
         name='Wt'))
 
     # Ghi chú thông số động theo hình dạng đập
-    fig.add_annotation(x=x1 * 0.4, y=H * (1 - xi) * 0.4, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.2, y=H * (1 - xi) * 0.4, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
     fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.7, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=x1 * 0.3, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.6, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
