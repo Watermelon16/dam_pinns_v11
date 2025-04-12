@@ -249,7 +249,7 @@ def create_force_diagram_plotly(H, n, m, xi):
                 xref='x', yref='y',
                 axref='x', ayref='y',
                 showarrow=True,arrowhead=3, arrowsize=1.0, arrowwidth=2, arrowcolor='red')
-         fig.add_annotation(
+            fig.add_annotation(
                 x=x, y=y,
                 text=label,
                 showarrow=False,
