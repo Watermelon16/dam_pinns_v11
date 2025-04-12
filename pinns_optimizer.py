@@ -310,7 +310,7 @@ def create_force_diagram_plotly(H, n, m, xi):
     # Ghi chú thông số động theo hình dạng đập
     fig.add_annotation(x=x1 * 0.7, y=H * (1 - xi) * 0.6, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
     fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.6, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=x1 * 1.2, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 1.1, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
