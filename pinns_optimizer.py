@@ -229,7 +229,7 @@ def create_force_diagram_plotly(H, n, m, xi):
 
     def add_arrow(x, y, dx, dy, label):
         fig.add_annotation(
-            x=x + dx, y=y + dy,
+            x=x - dx, y=y - dy,
             ax=x, ay=y,
             xref='x', yref='y',
             axref='x', ayref='y',
@@ -238,7 +238,7 @@ def create_force_diagram_plotly(H, n, m, xi):
             x=x, y=y,
             text=label,
             showarrow=False,
-            font=dict(size=14, color='black'))
+            font=dict(size=24, color='black'))
 
     add_arrow(mid - lG1, H / 3, 0, 6, 'G1')
     add_arrow(mid - lG2, H * (1 - xi) / 3, 0, 6, 'G2')
@@ -295,7 +295,7 @@ def create_force_diagram_plotly(H, n, m, xi):
     # Ghi chú thông số động theo hình dạng đập
     fig.add_annotation(x=x1 * 0.2, y=H * (1 - xi) * 0.4, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
     fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.7, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=x1 * 0.6, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.85, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
