@@ -237,7 +237,7 @@ def create_force_diagram_plotly(H, n, m, xi):
                 showarrow=True,
                 arrowhead=3, arrowsize=1.0, arrowwidth=2, arrowcolor='red')
             fig.add_annotation(
-                x=x + dx, y=y + dy,
+                x=x + dx, y=y + dy+1,
                 text=f"{label} = {{:.1f}} T/m".format(np.random.uniform(50, 200)),
                 showarrow=False,
                 font=dict(size=12, color='black')
@@ -308,9 +308,9 @@ def create_force_diagram_plotly(H, n, m, xi):
         name='Wt'))
 
     # Ghi chú thông số động theo hình dạng đập
-    fig.add_annotation(x=x1 * 0.2, y=H * (1 - xi) * 0.4, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.7, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
-    fig.add_annotation(x=x1 * 0.85, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.4, y=H * (1 - xi) * 0.6, text="n", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=(x1 + x4) / 2, y=H * 0.6, text="m", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
+    fig.add_annotation(x=x1 * 0.9, y=H * (1 - xi / 2), text="ξ", showarrow=False, font=dict(size=18, color='black', family='Arial Black'))
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
