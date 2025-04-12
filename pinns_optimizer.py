@@ -228,12 +228,12 @@ def create_force_diagram_plotly(H, n, m, xi):
     fig.add_trace(go.Scatter(x=x, y=y, fill='toself', mode='lines', line=dict(color='gray'), name='Mặt cắt'))
 
     def add_arrow(x, y, dx, dy, label):
-        fig.add_annotation( ax=x, ay=y,               # Gốc mũi tên = điểm đặt lực
-                            x=x + dx, y=y + dy,       # Đầu mũi tên (hướng đi ra)
-                            xref='x', yref='y',
-                            axref='x', ayref='y',
-                            showarrow=True,
-                            arrowhead=3, arrowsize=1.5, arrowwidth=2,arrowcolor='red')
+        fig.add_annotation(x=x + dx, y=y + dy,
+                           ax=x, ay=y,
+                           xref='x', yref='y',
+                           axref='x', ayref='y',
+                           showarrow=True,
+                           arrowhead=3, arrowsize=1.5, arrowwidth=2, arrowcolor='red')
     fig.add_annotation( x=x + dx * 1.1, y=y + dy * 1.1,
                         text=label, showarrow=False,
                         font=dict(size=24, color='black'))
