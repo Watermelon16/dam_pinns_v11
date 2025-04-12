@@ -257,10 +257,10 @@ def create_force_diagram_plotly(H, n, m, xi):
 
     add_arrow(mid - lG1, H / 3, 0, -5, 'G1')
     add_arrow(mid - lG2, H * (1 - xi) / 3, 0, -5, 'G2')
-    add_arrow(mid - lt, 0, 0, 5, 'Wt')
+    add_arrow(mid - lt, 0, 0, -5, 'Wt')
     add_arrow(mid - l2, H * (1 - xi) + xi * H / 2, 0, -5, "W'2")
     add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, -5, 'W"2')
-    add_arrow(x0 - 3, l1, 5, 0, 'W1')
+    add_arrow(x0 - 3, l1, -5, 0, 'W1')
 
     
     # Màu đồng bộ áp lực nước (nhạt)
