@@ -228,7 +228,7 @@ def create_force_diagram_plotly(H, n, m, xi):
     fig.add_trace(go.Scatter(x=x, y=y, fill='toself', mode='lines', line=dict(color='gray'), name='Mặt cắt'))
 
     def add_arrow(x, y, dx, dy, label):
-        if label in ['W1', 'Wt']:
+        if label in ['W1']:
             fig.add_annotation(
                 x=x, y=y,
                 ax=x + dx, ay=y + dy,
@@ -238,6 +238,20 @@ def create_force_diagram_plotly(H, n, m, xi):
                 arrowhead=3, arrowsize=1.0, arrowwidth=2, arrowcolor='red')
             fig.add_annotation(
                 x=x + dx, y=y + dy+1,
+                text=f"{label} = {{:.1f}} T/m".format(np.random.uniform(50, 200)),
+                showarrow=False,
+                font=dict(size=12, color='black')
+            )
+        elif label in ['Wt']:
+            fig.add_annotation(
+                x=x, y=y,
+                ax=x + dx, ay=y + dy,
+                xref='x', yref='y',
+                axref='x', ayref='y',
+                showarrow=True,
+                arrowhead=3, arrowsize=1.0, arrowwidth=2, arrowcolor='red')
+            fig.add_annotation(
+                x=x + dx, y=y + dy,
                 text=f"{label} = {{:.1f}} T/m".format(np.random.uniform(50, 200)),
                 showarrow=False,
                 font=dict(size=12, color='black')
@@ -314,8 +328,8 @@ def create_force_diagram_plotly(H, n, m, xi):
 
     fig.update_layout(
         title=f"Sơ đồ lực và phân bố áp lực (H = {H} m)",
-        xaxis_title="Chiều rộng (m)",
-        yaxis_title="Chiều cao (m)",
+        xaxis_title="Khoảng cách(m)",
+        yaxis_title="Cao độ (m)",
         width=800,
         height=600,
         showlegend=False,
