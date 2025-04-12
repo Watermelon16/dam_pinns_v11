@@ -234,7 +234,7 @@ def create_force_diagram_plotly(H, n, m, xi):
                            axref='x', ayref='y',
                            showarrow=True,
                            arrowhead=3, arrowsize=1.5, arrowwidth=2, arrowcolor='red')
-    fig.add_annotation( x=x + dx * 1.1, y=y + dy * 1.1,
+    fig.add_annotation( x=x, y=y ,
                         text=label, showarrow=False,
                         font=dict(size=24, color='black'))
 
