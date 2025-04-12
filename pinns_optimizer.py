@@ -228,14 +228,17 @@ def create_force_diagram_plotly(H, n, m, xi):
     fig.add_trace(go.Scatter(x=x, y=y, fill='toself', mode='lines', line=dict(color='gray'), name='Mặt cắt'))
 
     def add_arrow(x, y, dx, dy, label):
-        fig.add_annotation(x=x, y=y,
-                           ax=x + dx, ay=y + dy,
-                           xref='x', yref='y',
-                           axref='x', ayref='y',
-                           showarrow=True,
-                           arrowhead=3, arrowsize=1.5, arrowwidth=2, arrowcolor='red')
-        fig.add_annotation(x=x + dx * 1.1, y=y + dy * 1.1,
-                           text=label, showarrow=False, font=dict(size=14, color='black'))
+        fig.add_annotation(
+        ax=x, ay=y,               # Gốc mũi tên = điểm đặt lực
+        x=x + dx, y=y + dy,       # Đầu mũi tên (hướng đi ra)
+        xref='x', yref='y',
+        axref='x', ayref='y',
+        showarrow=True,
+        arrowhead=3, arrowsize=1.5, arrowwidth=2, arrowcolor='red')
+    fig.add_annotation(
+        x=x + dx * 1.1, y=y + dy * 1.1,
+        text=label, showarrow=False,
+        font=dict(size=25, color='black')
 
     add_arrow(mid - lG1, H / 3, 0, 6, 'G1')
     add_arrow(mid - lG2, H * (1 - xi) / 3, 0, 6, 'G2')
@@ -251,7 +254,7 @@ def create_force_diagram_plotly(H, n, m, xi):
 
     # W1 - tam giác: từ (0,0) lên (0,H) rồi xuống (-H,0)
     fig.add_trace(go.Scatter(
-        x=[0, 0, -H, 0],
+        x=[0, 0, -0.5*H, 0],
         y=[0, H, 0, 0],
         fill='toself',
         mode='lines',
@@ -282,7 +285,7 @@ def create_force_diagram_plotly(H, n, m, xi):
     # Wt - tam giác thấm nằm dưới với góc alpha1 (đáy nghiêng)
     fig.add_trace(go.Scatter(
         x=[x0, x4, x0],
-        y=[0, 0, -0.6 * H],
+        y=[0, 0, -0.3 * H],
         fill='toself',
         mode='lines',
         line=water_line,
